@@ -28,8 +28,7 @@ function LoginPage(){
         .then(({data}) => {
             window.localStorage.clear()
             window.localStorage.setItem('@Token', data.token)
-            window.localStorage.setItem('@USERID',data.user.id)
-            console.log(data)  
+            window.localStorage.setItem('@USERID',data.user.id) 
             toast.success('Logado Com Sucesso', {
                 theme: 'dark',
                 autoClose: 2400,

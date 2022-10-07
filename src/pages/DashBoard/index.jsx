@@ -3,6 +3,7 @@ import Logo from '../../assets/Logo.svg'
 import {useNavigate} from 'react-router-dom'
 import { api } from '../../services/api'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 function Dashboard(){
     const token = localStorage.getItem('@Token')
@@ -21,9 +22,14 @@ function Dashboard(){
                 setModulo(`${data.course_module}`)
                 setLoading(false)
             },800)
+            
         })
         .catch(error => {
-            console.log(error)
+            toast.error('Ocorreu algum erro na aplicação. Retornando a pagina de login....', {
+                theme:'dark',
+                autoClose: 2500
+            })
+            navigate('/')
         })
     }
     getUser()

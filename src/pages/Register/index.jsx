@@ -40,8 +40,6 @@ function RegisterPage(){
     function setRegister(data){
         api.post('/users', {...data})
         .then(response => {
-            console.log(response)
-            
             toast.success('Cadastro Feito com sucesso!', {
                 theme: 'dark',
                 autoClose: 2400,
@@ -51,7 +49,6 @@ function RegisterPage(){
             },2500)
         })
         .catch(error => {
-            console.log(error)
             toast.error('Algo deu errado no Cadastro', {
                 theme: 'dark'
             })
@@ -112,7 +109,6 @@ function RegisterPage(){
                     <BaseTitulo tag='h5' FontSize='headlineBlack'>{errors.course_module?.message}</BaseTitulo>
                 </div>
                 <Buttons type='submit' ButtonColor='rose'>Cadastrar</Buttons>
-                {/* {errors === {}? <Buttons type='submit' ButtonColor='rose'>Cadastrar</Buttons> : (console.log(errors.hasOwnProperty),<Buttons disabled type='submit' ButtonColor='disabled'>Cadastrar</Buttons>)} */}
             </Form>
         </Section>
         </Main>
