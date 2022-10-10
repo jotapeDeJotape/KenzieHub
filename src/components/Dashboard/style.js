@@ -56,15 +56,17 @@ export const Loading = styled.div`
             margin: 8px;
             border-radius: 50%;
             border: 6px solid #fff;
-            border-color: var(--color-primary) transparent var(--color-primary) transparent;
-            animation: load 1.8s linear infinite;
+            border-color: var(--color-primary)  transparent var(--color-primary) transparent;
+            animation: load 2s linear infinite;
                 
                 @keyframes load {
                 0% {
                     transform: rotate(0deg);
+                    filter: hue-rotate(0deg);
                 }
                 100% {
                     transform: rotate(360deg);
+                    filter: hue-rotate(360deg);
                 }
                 
     }   
