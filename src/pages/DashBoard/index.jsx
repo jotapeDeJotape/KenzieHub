@@ -1,4 +1,4 @@
-import {Header,Loading,Main,BaseTitulo,Buttons} from '../../components/Dashboard/style'
+import {Header,Loading,Main,BaseTitulo,Buttons,LinkStyled} from '../../components/Dashboard/style'
 
 import Logo from '../../assets/Logo.svg'
 
@@ -36,7 +36,7 @@ function Dashboard(){
                 <Header>
                 <div>
                     <img src={Logo} alt="ImagemKenzieHub" />
-                    <Buttons onClick={navigateLogOut} ButtonColor='black'>Sair</Buttons>
+                    <LinkStyled to='/' onClick={navigateLogOut} ButtonColor='black'>Sair</LinkStyled>
                 </div>
                 <div>
                     <BaseTitulo tag='h1' FontSize='one'>Olá, {user.name}</BaseTitulo>

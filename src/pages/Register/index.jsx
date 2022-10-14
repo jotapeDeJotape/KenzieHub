@@ -1,5 +1,5 @@
 import Logo from '../../assets/Logo.svg'
-import {Main,Section,Form,BaseTitulo,Buttons} from '../../components/FormRegister/style'
+import {Main,Section,Form,BaseTitulo,Buttons,LinkStyled} from '../../components/FormRegister/style'
 
 import React, { useContext } from 'react'
 import { toast } from 'react-toastify';
@@ -45,7 +45,7 @@ function RegisterPage(){
         <Section>    
             <div>
                 <img src={Logo} alt="LogoKenzieHub" />
-                <Buttons onClick={NavigateLogin} ButtonColor='black'>Voltar</Buttons>
+                <LinkStyled to='/'>Voltar</LinkStyled>
             </div>
             <Form onSubmit={handleSubmit(setRegister)}>
                 <BaseTitulo tag='h1' FontSize='one'>Crie sua conta</BaseTitulo>

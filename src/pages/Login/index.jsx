@@ -1,5 +1,5 @@
 import Logo from '../../assets/Logo.svg'
-import {Main,Section,Form,BaseTitulo,Buttons} from '../../components/FormLogin/style'
+import {Main,Section,Form,BaseTitulo,Buttons,LinkStyled} from '../../components/FormLogin/style'
 import React, { useContext, useEffect } from 'react'
 
 import { useForm } from 'react-hook-form';
@@ -44,7 +44,7 @@ function LoginPage(){
                 </div>
                 <Buttons type='submit' ButtonColor='rose'>Entrar</Buttons>
                 <BaseTitulo tag='h6' FontSize='headlineBlack' >Ainda não possui uma conta?</BaseTitulo>
-                <Buttons onClick={NavigateRegister} ButtonColor='gray'>Cadastre-se</Buttons>
+                <LinkStyled to='/register' ButtonColor='gray'>Cadastre-se</LinkStyled>
             </Form>
         </Section>
         </Main>

@@ -52,7 +52,6 @@ export function UserProvider({children}){
     }
     function navigateLogOut(){
         localStorage.clear()
-        navigate('/')
     }
     function setRegister(data){
         api.post('/users', {...data})

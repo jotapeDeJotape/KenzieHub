@@ -1,7 +1,7 @@
 
 import styled, { css } from "styled-components";
 import { TextoBase } from "../typography/typography";
-
+import { Link } from "react-router-dom";
 
 export const Main = styled.main`
     display: flex;
@@ -186,6 +186,21 @@ export const BaseTitulo = styled(TextoBase)`
         
     }}
 `
+
+export const LinkStyled = styled(Link)`
+    background-color: var(--grey-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 115px;
+    height: 45px;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration-line: none;
+    color: var(--grey-0);
+`
+
+
 
 export const Buttons = styled.button`
     width: 90%;
