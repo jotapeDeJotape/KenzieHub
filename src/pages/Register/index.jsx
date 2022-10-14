@@ -1,7 +1,7 @@
 import Logo from '../../assets/Logo.svg'
 import {Main,Section,Form,BaseTitulo,Buttons} from '../../components/FormRegister/style'
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
@@ -9,9 +9,12 @@ import { api } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
+import { UserContext } from '../../Contexts/userContext';
 
 function RegisterPage(){
     const navigate = useNavigate()
+
+    const {setRegister,NavigateLogin} = useContext(UserContext)
 
     const scheme = yup.object().shape({
         email: yup.string().email('Email Inválido!').required('Email é Obrigatório'),
@@ -34,26 +37,7 @@ function RegisterPage(){
         resolver: yupResolver(scheme)
     })
 
-    function NavigateLogin(){
-        navigate('/')
-    }
-    function setRegister(data){
-        api.post('/users', {...data})
-        .then(response => {
-            toast.success('Cadastro Feito com sucesso!', {
-                theme: 'dark',
-                autoClose: 2400,
-            })
-            setTimeout(() => {
-                navigate('/')
-            },2500)
-        })
-        .catch(error => {
-            toast.error('Algo deu errado no Cadastro', {
-                theme: 'dark'
-            })
-        })
-    }
+
 
 
     return(

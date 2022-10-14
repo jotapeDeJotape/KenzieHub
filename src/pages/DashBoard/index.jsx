@@ -1,74 +1,57 @@
-import {Header,Buttons,BaseTitulo,Loading} from '../../components/Dashboard/style'
+import {Header,Loading,Main,BaseTitulo,Buttons} from '../../components/Dashboard/style'
+
 import Logo from '../../assets/Logo.svg'
-import {useNavigate} from 'react-router-dom'
+
+import {Link, Navigate, useNavigate} from 'react-router-dom'
+
 import { api } from '../../services/api'
-import { useEffect, useState } from 'react'
+
+import { useContext, useEffect, useState } from 'react'
+
 import { toast } from 'react-toastify'
+
+import TechList from '../../components/TechList'
+import ModalTech from '../../components/modalTech'
+import { UserContext, UserProvider } from '../../Contexts/userContext'
+import { BsNodePlusFill } from 'react-icons/bs'
+
+
+
 
 function Dashboard(){
     
-    const [nome,setNome] = useState('')
-    const [modulo,setModulo] = useState('')
-    const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
+    const {OpenModal,setOpenModal,user,loading,navigateLogOut} = useContext(UserContext)
 
-    function navigateLogin(){
-        localStorage.clear()
-        navigate('/')
-    }
 
-    useEffect(() => {
-        const token = localStorage.getItem('@Token')
-        async function loadUser(){
-            if(token){
-                try{
-                    api.defaults.headers.authorization = `Bearer ${token}`
-                    await api.get('/profile', {...token})
-            .then(({data}) => {
-                setTimeout(() => {
-                    setNome(`${data.name}`)
-                    setModulo(`${data.course_module}`)
-                    setLoading(false)
-                },800)
-        })
-            .catch(error => {
-            console.log(error)
-            toast.error('Ocorreu algum erro na aplicação. Retornando a pagina de login....', {
-                theme:'dark',
-                autoClose: 2500
-            })
-            
-            navigate('/')
-        })
-                }catch(error){
-                    console.log(error)
-                }
-            }   
-        }
-        loadUser()
-    }, [])
 
-   async function getUser(data){
-        
-    }
+
     return(
         <>
-            {loading ? ( 
-                <Loading>
-                    <div>
-                    </div>
-                </Loading>
-            ) : (
+            {!user  ? (
+                <>
+                <Navigate to='/' replace/>
+                </>
+            ) :(
+                <>              
                 <Header>
                 <div>
                     <img src={Logo} alt="ImagemKenzieHub" />
-                    <Buttons onClick={navigateLogin} ButtonColor='black'>Sair</Buttons>
+                    <Buttons onClick={navigateLogOut} ButtonColor='black'>Sair</Buttons>
                 </div>
                 <div>
-                    <BaseTitulo tag='h1' FontSize='one'>Olá, {nome}</BaseTitulo>
-                    <BaseTitulo tag='h6' FontSize='headlineBlack'>{modulo}</BaseTitulo>
+                    <BaseTitulo tag='h1' FontSize='one'>Olá, {user.name}</BaseTitulo>
+                    <BaseTitulo tag='h6' FontSize='headlineBlack'>{user.course_module}</BaseTitulo>
                 </div>
             </Header>
+            <Main>
+                <div>
+                    <BaseTitulo tag='h2' FontSize='two'>Tecnologias</BaseTitulo>
+                    <Buttons onClick={() => setOpenModal(true)} ButtonColor='black'>+</Buttons>
+                </div>
+                <TechList/>
+                {!OpenModal ? <></> : <ModalTech setOpenModal={setOpenModal} openModal={OpenModal} />}
+            </Main>
+            </>
             )}
         
         </>

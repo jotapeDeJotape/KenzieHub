@@ -3,7 +3,7 @@ import { TextoBase } from "../typography/typography";
 
 
 export const Header = styled.header`
-    height: 322px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,14 +16,14 @@ export const Header = styled.header`
         display: flex;
         justify-content: space-around;
         width: 100%;
-        height: 73px;
+        height: 100px;
         align-items: center;
         border-bottom: 2px solid var(--grey-3);
     }
     div:nth-child(2){
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-start ;
         width: 100%;
         border-bottom: 2px solid var(--grey-3);
         padding: 16px;
@@ -34,8 +34,13 @@ export const Header = styled.header`
         
         @media (min-width: 768px){
                 display: flex;
-                flex-direction: column;
-                align-items: center;        
+                flex-direction: row;
+                align-items: center;
+                justify-content:space-around;
+
+                h6{
+                    margin-top: 0;
+                }
         }
     }
 
@@ -199,4 +204,22 @@ export const BaseTitulo = styled(TextoBase)`
         
     }}
 `
-
+export const Main = styled.main`
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+    div{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 8px auto 20px auto;
+        
+        button{
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+        }
+    }
+`

@@ -1,121 +1,6 @@
-
-import styled, { css } from "styled-components";
+import styled , {css} from "styled-components";
 import { TextoBase } from "../typography/typography";
 
-
-export const Main = styled.main`
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-`
-
-export const Section = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 35px;
-
-    div:first-child{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 280px;
-
-        @media (min-width: 768px){
-            width: 420px;
-        }
-    }
-
-    img{
-        width: 100px;
-        height: 20px;
-
-        @media (min-width: 768px) {
-            height: 30px;
-            width: 200px;
-        }
-    }
-    @media (min-width: 768px) {
-        margin-top: 10px;
-    }
-`
-
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 16px;
-    margin-top: 20px;
-
-    background-color: var(--grey-3);
-    border-radius: 4px;
-
-    width: 260px;
-    height: 780px;
-
-    h1{
-        margin: 17px;
-    }
-    div{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        width: 95%;
-
-        h5{
-            margin: 8px;
-        }
-
-        input,select{
-            width: 95%;
-            height: 20px;
-            outline: none;
-
-            background-color: var(--grey-2);
-            border: none;
-            border-radius: 4px;
-
-            margin-top: 18px;
-            padding: 8px;
-
-            color: var(--grey-0);
-            font-size: 16px;
-            font-weight: 400;
-            
-            :hover{
-                border: 2px solid var(--grey-0);
-                transition: 0.3s;
-            }
-
-
-            @media (min-width: 768px){
-                height: 30px;
-            }
-        }
-        select{
-            height: 40px;
-            width: 250px;
-            text-align: center;
-            
-            :hover{
-                border: none;
-            }
-            @media (min-width: 768px){
-                width: 345px;
-            }
-        }
-
-
-    }
-    @media (min-width: 768px) {
-        width: 360px;
-        height: 900px;
-    }
-    
-`
 export const BaseTitulo = styled(TextoBase)`
     ${({FontSize}) => {
         if(FontSize === 'one'){
@@ -186,7 +71,6 @@ export const BaseTitulo = styled(TextoBase)`
         
     }}
 `
-
 export const Buttons = styled.button`
     width: 90%;
     height: 40px;
@@ -245,3 +129,123 @@ export const Buttons = styled.button`
 
 `
 
+export const BackSec = styled.section`
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 200px;
+
+    background-color: var(--grey-4);
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ModalSec = styled.section`
+    position: absolute;
+    flex-direction: column;
+    top: 300px;
+    width: 300px;
+    height: 350px;
+    background-color: var(--grey-4);
+    border-radius: 4px;
+
+    h4{
+        font-size: 15px;
+    }
+
+    @media (min-width: 768px){
+            width: 50%;
+            height: 400px;
+        }
+`
+
+export const TextSec = styled.section`
+        background-color: var(--grey-2);
+        border-radius: 4px;
+        border-bottom: 2px solid var(--grey-0);
+        padding: 6px;   
+        width: 97%;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        button{
+            background: none;
+            width: 30px;
+            height: 30px;
+        }
+
+        
+`
+
+export const InputSec = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    
+
+    div{
+        width: 80%;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        @media (min-width: 768px){
+            height: 70px;
+        }
+        
+        h5{
+            font-size: 12px;
+            margin: 5px;
+        }
+
+
+        input,select{
+            width: 95%;
+            height: 50px;
+            outline: none;
+
+            background-color: var(--grey-2);
+            border: none;
+            border-radius: 4px;
+
+            margin-top: 18px;
+            padding: 8px;
+
+            color: var(--grey-0);
+            font-size: 16px;
+            font-weight: 400;
+            
+            :hover{
+                border: 2px solid var(--grey-0);
+                transition: 0.3s;
+            }
+
+
+            @media (min-width: 768px){
+                height: 30px;
+            }
+        }
+        select{
+            width: 245px;
+            height: 40px;
+
+            @media (min-width: 768px){
+                width: 99%;
+                height: 80px;
+            }
+        }
+    }
+    button{
+        width: 220px;
+        font-size: 16px;
+        height: 40px;
+    }
+`

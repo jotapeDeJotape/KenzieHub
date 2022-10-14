@@ -1,18 +1,17 @@
 import Logo from '../../assets/Logo.svg'
 import {Main,Section,Form,BaseTitulo,Buttons} from '../../components/FormLogin/style'
-import React from 'react'
-
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { api } from '../../services/api';
+import React, { useContext, useEffect } from 'react'
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
+import { UserContext } from '../../Contexts/userContext';
 
 
 function LoginPage(){
-    const navigate = useNavigate()
+    
+    const {NavigateRegister,logarApi} = useContext(UserContext)
+
     const scheme = yup.object().shape({
         email:yup.string().email('Email Inválido').required('Email é Obrigatório!'),
         password:yup.string().required('Senha é Obrigatório')
@@ -22,32 +21,6 @@ function LoginPage(){
     const {register,handleSubmit, formState: {errors}, setError} = useForm({
         resolver: yupResolver(scheme)
     })
-
-    function logarApi(data){
-        api.post('/sessions', {...data})
-        .then(({data}) => {
-            window.localStorage.clear()
-            window.localStorage.setItem('@Token', data.token)
-            window.localStorage.setItem('@USERID',data.user.id) 
-            toast.success('Logado Com Sucesso', {
-                theme: 'dark',
-                autoClose: 2400,
-            })
-            setTimeout(() =>{
-                navigate('/dashboard')
-            },2500)
-        })
-        .catch(({response}) => {
-            toast.error(`Senha e Email não são compátiveis`, {
-                theme: 'dark'
-            })
-        })
-        
-    }
-
-    function NavigateRegister(){
-        navigate('/register')
-    }
 
     
 
