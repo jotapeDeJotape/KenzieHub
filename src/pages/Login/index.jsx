@@ -10,7 +10,7 @@ import { UserContext } from '../../Contexts/userContext';
 
 function LoginPage(){
     
-    const {NavigateRegister,logarApi} = useContext(UserContext)
+    const {logarApi} = useContext(UserContext)
 
     const scheme = yup.object().shape({
         email:yup.string().email('Email Inválido').required('Email é Obrigatório!'),

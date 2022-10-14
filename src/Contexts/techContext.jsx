@@ -15,7 +15,7 @@ function TechProvider({children}){
 
     const [loadingTech, setLoadingTech] = useState(true)
 
-    const {user,setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     
 
     async function createTech(content){
@@ -26,7 +26,6 @@ function TechProvider({children}){
                 headers: {Authorization: `Bearer ${Token}`}
             })
             .then(({data}) => {
-                console.log(data)
                 toast.success('Tecnologia criada com sucesso!', {
                     theme:"dark",
                     autoClose: 2000
@@ -51,7 +50,7 @@ function TechProvider({children}){
                 headers: {Authorization: `Bearer ${Token}`}
             })
             .then(response => {
-                console.log(response)
+
                 toast.success('Tecnologia apagada com sucesso!', {
                     theme:'dark',
                     autoClose: 2000
@@ -75,7 +74,6 @@ function TechProvider({children}){
                     try{
                         api.defaults.headers.Authorization = `Bearer ${Token}`
                         const {data} = await api.get('/profile')
-
                         setTechList(data.techs)
                     }catch(error){
                         console.log(error)

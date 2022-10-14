@@ -42,14 +42,6 @@ export function UserProvider({children}){
             })
         }
     }
-
-    function NavigateRegister(){
-        navigate('/register')
-    }
-
-    function NavigateLogin(){
-        navigate('/')
-    }
     function navigateLogOut(){
         localStorage.clear()
     }

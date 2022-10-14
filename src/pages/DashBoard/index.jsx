@@ -3,12 +3,8 @@ import {Header,Loading,Main,BaseTitulo,Buttons,LinkStyled} from '../../component
 import Logo from '../../assets/Logo.svg'
 
 import {Link, Navigate, useNavigate} from 'react-router-dom'
-
-import { api } from '../../services/api'
-
 import { useContext, useEffect, useState } from 'react'
 
-import { toast } from 'react-toastify'
 
 import TechList from '../../components/TechList'
 import ModalTech from '../../components/modalTech'
