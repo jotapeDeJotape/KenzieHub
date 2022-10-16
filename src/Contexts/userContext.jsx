@@ -26,7 +26,7 @@ export function UserProvider({children}){
             const response = await api.post('/sessions', data)
             console.log(response)
             const {user: userResponse, token} = response.data
-            console.log(userResponse)
+            
             setUser(userResponse)
             setTechList(userResponse.techs)
             localStorage.setItem('@Token', token)
@@ -102,7 +102,7 @@ export function UserProvider({children}){
 
     
     return(
-        <UserContext.Provider value={{logarApi, NavigateRegister,setRegister,NavigateLogin,OpenModal,setOpenModal,user,loading,setLoading,navigateLogOut,setUser}}>
+        <UserContext.Provider value={{logarApi,setRegister,OpenModal,setOpenModal,user,loading,setLoading,navigateLogOut,setUser}}>
             {children}
         </UserContext.Provider>
     )
