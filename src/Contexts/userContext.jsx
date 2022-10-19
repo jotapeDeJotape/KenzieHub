@@ -9,8 +9,6 @@ export const UserContext = createContext({})
 
 export function UserProvider({children}){
     
-    
-
     const navigate = useNavigate()
 
     const [user,setUser] = useState(null)
@@ -34,7 +32,8 @@ export function UserProvider({children}){
                 theme:'dark',
                 autoClose: 2500,
             })
-            navigate('/dashboard', {replace: true})
+            const toNavigate = location.state?.from?.pathname || 'dashboard'
+            navigate(toNavigate, {replace: true})
         } catch (error){
             toast.error(`${error.response.data.message}`, {
                 theme:'dark',
@@ -42,6 +41,10 @@ export function UserProvider({children}){
             })
         }
     }
+
+    
+
+
     function navigateLogOut(){
         localStorage.clear()
     }
@@ -80,7 +83,7 @@ export function UserProvider({children}){
                 try{
                     api.defaults.headers.authorization = `Bearer ${token}`
                    const {data} = await api.get('/profile')
-                    setUser(`${data}`)
+                    setUser(data)
                     
                 }catch(error){
                     console.log(error.response.data.message)
@@ -102,7 +105,7 @@ export function UserProvider({children}){
 
     
     return(
-        <UserContext.Provider value={{logarApi,setRegister,OpenModal,setOpenModal,user,loading,setLoading,navigateLogOut,setUser}}>
+        <UserContext.Provider value={{logarApi,setRegister,OpenModal,setOpenModal,user,loading,setLoading,navigateLogOut,setUser,navigate}}>
             {children}
         </UserContext.Provider>
     )

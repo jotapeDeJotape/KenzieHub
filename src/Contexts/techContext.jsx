@@ -15,7 +15,7 @@ function TechProvider({children}){
 
     const [loadingTech, setLoadingTech] = useState(true)
 
-    const {user} = useContext(UserContext)
+    const [userDash,setUserDash] = useState(null)
     
 
     async function createTech(content){
@@ -75,6 +75,8 @@ function TechProvider({children}){
                         api.defaults.headers.Authorization = `Bearer ${Token}`
                         const {data} = await api.get('/profile')
                         setTechList(data.techs)
+                        
+
                     }catch(error){
                         console.log(error)
                     }
@@ -82,7 +84,7 @@ function TechProvider({children}){
                 setLoadingTech(false)
             }
             LoadTechs()
-    },[user,TechList])
+    },[TechList])
 
     return (
         <TechContext.Provider value={{createTech,deleteTech,TechList,loadingTech,setLoadingTech,setTechList}}>

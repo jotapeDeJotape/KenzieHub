@@ -9,8 +9,9 @@ import { UserContext } from '../../Contexts/userContext';
 
 
 function LoginPage(){
-    
-    const {logarApi} = useContext(UserContext)
+    const Token = localStorage.getItem('@Token')
+
+    const {logarApi,navigate,user} = useContext(UserContext)
 
     const scheme = yup.object().shape({
         email:yup.string().email('Email Inválido').required('Email é Obrigatório!'),
@@ -22,6 +23,8 @@ function LoginPage(){
         resolver: yupResolver(scheme)
     })
 
+    
+    
     
 
     return(

@@ -10,6 +10,7 @@ import TechList from '../../components/TechList'
 import ModalTech from '../../components/modalTech'
 import { UserContext, UserProvider } from '../../Contexts/userContext'
 import { BsNodePlusFill } from 'react-icons/bs'
+import { TechContext } from '../../Contexts/techContext'
 
 
 
@@ -17,9 +18,6 @@ import { BsNodePlusFill } from 'react-icons/bs'
 function Dashboard(){
     
     const {OpenModal,setOpenModal,user,loading,navigateLogOut} = useContext(UserContext)
-
-
-
 
     return(
         <>

@@ -13,10 +13,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
         <TechProvider>
-      <UserProvider>
+          <UserProvider>
             <GlobalStyle />
                 <App />
-      </UserProvider>
+          </UserProvider>
         </TechProvider>
       <ToastContainer/>
     </BrowserRouter>
