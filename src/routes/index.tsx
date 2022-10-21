@@ -2,7 +2,7 @@ import {Routes,Route} from 'react-router-dom'
 import ProtectedRoutes from '../components/ProtectedRoutes'
 import Dashboard from '../pages/DashBoard'
 import LoginPage from '../pages/Login'
-import RegisterPage from '../pages/Register'
+import RegisterPage from '../pages/Register/index.jsx'
 
 
 

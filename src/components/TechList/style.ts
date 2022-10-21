@@ -1,5 +1,8 @@
 import styled , {css} from "styled-components";
+import { iFontSize } from "../FormRegister/style";
 import { TextoBase } from "../typography/typography";
+
+
 
 
 export const TechUl = styled.ul`
@@ -77,7 +80,7 @@ export const TechItems = styled.li`
     }
 
 `
-export const BaseTitulo = styled(TextoBase)`
+export const BaseTitulo = styled(TextoBase)<iFontSize>`
     ${({FontSize}) => {
         if(FontSize === 'one'){
             return css`

@@ -3,26 +3,51 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from 'react-toastify';
 import { useState } from "react";
-import { UserContext } from "./userContext";
+import { iUser, UserContext } from "./userContext";
+
+interface iTechContextProps{
+    children: React.ReactNode
+}
+
+interface iTechContextProviders{
+    createTech: (data : iCreateTech) => void,
+    deleteTech: (id : string) => void,
+    loadingTech: boolean,
+    setLoadingTech: Function,
+    setTechList: Function,
+    TechList: iUserTechs[]
+}
+
+export interface iCreateTech{
+    data: string,
+}
+
+export interface iUserTechs{
+    id: string,
+    title:string,
+    status:string,
+}
 
 
-export const TechContext = createContext({})
+  
 
 
-function TechProvider({children}){
+
+export const TechContext = createContext({} as iTechContextProviders )
+
+
+function TechProvider({children} : iTechContextProps){
     
-    const [TechList, setTechList] = useState([])
+    const [TechList, setTechList] = useState<iUserTechs[]>([] as iUserTechs[])
 
     const [loadingTech, setLoadingTech] = useState(true)
 
-    const [userDash,setUserDash] = useState(null)
-    
 
-    async function createTech(content){
+    async function createTech(data: iCreateTech){
         const Token = localStorage.getItem('@Token')
         if(Token){
             
-            api.post(`/users/techs`, {...content}, {
+            api.post(`/users/techs`, {...data}, {
                 headers: {Authorization: `Bearer ${Token}`}
             })
             .then(({data}) => {
@@ -43,14 +68,13 @@ function TechProvider({children}){
         }
     }
 
-    async function deleteTech(techID){
+    async function deleteTech(id : string){
         const Token = localStorage.getItem('@Token')
         if(Token){
-            api.delete(`/users/techs/${techID}`, {
+            api.delete(`/users/techs/${id}`, {
                 headers: {Authorization: `Bearer ${Token}`}
             })
             .then(response => {
-
                 toast.success('Tecnologia apagada com sucesso!', {
                     theme:'dark',
                     autoClose: 2000
@@ -73,7 +97,7 @@ function TechProvider({children}){
                 if(Token){
                     try{
                         api.defaults.headers.Authorization = `Bearer ${Token}`
-                        const {data} = await api.get('/profile')
+                        const {data} = await api.get<iUser>('/profile')
                         setTechList(data.techs)
                         
 

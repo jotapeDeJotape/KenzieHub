@@ -5,9 +5,21 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { UserContext } from '../../Contexts/userContext';
-import { TechContext } from "../../Contexts/techContext";
+import { iCreateTech, TechContext } from "../../Contexts/techContext";
 
-function ModalTech({setOpenModal}){
+interface iModalTech{
+    setOpenModal: Function
+    OpenModal: boolean,
+}
+
+export interface iTechAdd{
+    title:string,
+    status:string,
+    data:string,
+}
+
+
+function ModalTech({setOpenModal,OpenModal} : iModalTech){
 
     const {createTech} = useContext(TechContext)
 
@@ -17,7 +29,7 @@ function ModalTech({setOpenModal}){
         
     })
 
-    const {register,handleSubmit, formState: {errors}, setError} = useForm({
+    const {register,handleSubmit, formState: {errors}} = useForm<iTechAdd>({
         resolver: yupResolver(scheme)
     })
     return(
@@ -26,24 +38,24 @@ function ModalTech({setOpenModal}){
         </BackSec>
             <ModalSec>
                 <TextSec>
-                    <BaseTitulo tag='h4' FontSize='three'>Cadastrar Tecnologia</BaseTitulo>
+                    <BaseTitulo className="" tag='h4' FontSize='three'>Cadastrar Tecnologia</BaseTitulo>
                     <Buttons onClick={() => setOpenModal(false)} ButtonColor='black'>X</Buttons>
                 </TextSec>
                 <InputSec onSubmit={handleSubmit(createTech)}>
                         <div>
-                            <BaseTitulo htmlFor="title" tag='h5' FontSize='three'>Nome</BaseTitulo>
-                            <input type="text" name="title" placeholder="Insira a Tecnologia" {...register('title')} />
-                            <BaseTitulo tag='h5' FontSize='headlineBlack'>{errors.title?.message}</BaseTitulo>
+                            <BaseTitulo className=""  tag='h5' FontSize='three'>Nome</BaseTitulo>
+                            <input type="text"  placeholder="Insira a Tecnologia" {...register('title')} />
+                            <BaseTitulo className="" tag='h5' FontSize='headlineBlack'>{errors.title?.message}</BaseTitulo>
                         </div>
                         <div>
-                            <BaseTitulo htmlFor="status" tag='h5' FontSize='three'>Selecionar Status</BaseTitulo>
-                            <select name="status" {...register('status')}>
+                            <BaseTitulo className=""  tag='h5' FontSize='three'>Selecionar Status</BaseTitulo>
+                            <select  {...register('status')}>
                                 <option value="">Selecionar Nível</option>
                                 <option value="Iniciante">Iniciante</option>
                                 <option value="Intermediário">Intermediário</option>
                                 <option value="Avançado">Avançado</option>
                             </select>
-                            <BaseTitulo tag='h5' FontSize='headlineBlack'>{errors.status?.message}</BaseTitulo>
+                            <BaseTitulo className="" tag='h5' FontSize='headlineBlack'>{errors.status?.message}</BaseTitulo>
                         </div>
                         <Buttons type="submit"  ButtonColor='rose'>Cadastrar Tecnologia</Buttons>
                 </InputSec>

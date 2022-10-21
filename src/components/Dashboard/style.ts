@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
 import { TextoBase } from "../typography/typography";
 import { Link } from "react-router-dom";
+import { iButtonColorProps, iFontSize } from "../FormRegister/style";
 
 export const Header = styled.header`
     height: 250px;
@@ -92,7 +93,7 @@ export const Loading = styled.div`
 `
 
 
-export const Buttons = styled.button`
+export const Buttons = styled.button<iButtonColorProps>`
     width: 90%;
     height: 40px;
     
@@ -147,7 +148,7 @@ export const Buttons = styled.button`
     }
 `
 
-export const BaseTitulo = styled(TextoBase)`
+export const BaseTitulo = styled(TextoBase)<iFontSize>`
     ${({FontSize}) => {
         if(FontSize === 'one'){
             return css`

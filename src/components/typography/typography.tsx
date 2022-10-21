@@ -1,8 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 
+export interface Typegrophay{
+    tag: string,
+    children: ReactNode,
+    className: string, 
+}
 
-export function TextoBase({tag, children, className}){
+
+export function TextoBase({tag, children, className} : Typegrophay){
     return(
         <>
             {tag === 'h1' && <h1 className={className}>{children}</h1>}

@@ -9,7 +9,8 @@ import { UserProvider } from './Contexts/userContext'
 import TechProvider from './Contexts/techContext'
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
         <TechProvider>
