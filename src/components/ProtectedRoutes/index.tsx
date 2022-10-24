@@ -11,9 +11,12 @@ function ProtectedRoutes(){
     if(loading){
         return null
     }
-   
+    
+    
 
-    return user? <Outlet/> : <Navigate to='/' replace state={{from:location}}/>
+    return user? <Outlet/>
+     : 
+     <Navigate to='/' replace state={{from:location}}/>
         
         
     

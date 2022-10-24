@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from 'react-toastify';
 import { useState } from "react";
@@ -46,6 +46,12 @@ interface iLoginAdd{
     token: string,
     user: iUser
 }
+interface iLocation{
+    state: string,
+    from:   string,
+    pathname:string,
+}
+
 
 
 export const UserContext = createContext({} as iUserContextProvider)
@@ -62,6 +68,8 @@ export function UserProvider({children} : iUserContextProps){
 
     const [OpenModal, setOpenModal] = useState(false)
 
+    const location = useLocation()
+
   async  function logarApi(data : iUserLogin){
         try{
             const response = await api.post<iLoginAdd>('/sessions', data)
@@ -74,7 +82,8 @@ export function UserProvider({children} : iUserContextProps){
                 theme:'dark',
                 autoClose: 2500,
             })
-            navigate('/dashboard', {replace: true})
+            const toNavigate = location.state?.from?.pathname  || 'dashboard' 
+            navigate(toNavigate, {replace: true})
         } catch (error){
             if(axios.isAxiosError(error))
             toast.error(`${error.message}`, {
@@ -82,6 +91,7 @@ export function UserProvider({children} : iUserContextProps){
                 autoClose: 1500,
             })
         }
+        setLoading(false)
     }
 
     function setRegister(data : iUserRegister ){
