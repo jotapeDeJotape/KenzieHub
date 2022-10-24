@@ -74,8 +74,6 @@ export function UserProvider({children} : iUserContextProps){
                 theme:'dark',
                 autoClose: 2500,
             })
-            console.log(user)
-            // const toNavigate = location.state?.from?.pathname || 'dashboard' 
             navigate('/dashboard', {replace: true})
         } catch (error){
             if(axios.isAxiosError(error))
