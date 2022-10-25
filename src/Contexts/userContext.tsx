@@ -34,10 +34,7 @@ export interface iUser{
     name:string,
     bio:string,
     contact:string,
-    course_module: "Primeiro módulo (Introdução ao Frontend)"
-                    | "Segundo módulo (Frontend Avançado)"
-                    | "Terceiro módulo (Introdução ao Backend)"
-                    | "Quarto módulo (Backend Avançado)"
+    course_module: string,
     techs: iUserTechs[]               
 
 }
@@ -46,11 +43,12 @@ interface iLoginAdd{
     token: string,
     user: iUser
 }
-interface iLocation{
-    state: string,
-    from:   string,
-    pathname:string,
-}
+
+ 
+ 
+
+
+
 
 
 
